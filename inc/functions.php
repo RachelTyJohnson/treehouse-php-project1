@@ -60,11 +60,8 @@ $quotes = [
 //function to generate random number and pull a quote out from that
 function getRandomQuote($array){
 
-  //get length of the array
-  $length = count($array) -1;
-
   //get random number using length of array
-  $randomNumber = rand(0,$length);
+  $randomNumber = array_rand($array);
 
   //return the quote array at the index of random number
   return $array[$randomNumber];
@@ -126,7 +123,7 @@ $gradients = [
 //function to change background color
 function changeBackground(){
 //get random Number
-$randcolorNum = rand(0,count($GLOBALS['gradients'])-1);
+$randcolorNum = array_rand($GLOBALS['gradients']);
 $theColor = $GLOBALS['gradients'][$randcolorNum];
 $colorString = 'background-image: linear-gradient(120deg, '.$theColor[0].' , '.$theColor[1].' );';
 echo $colorString;
