@@ -1,8 +1,9 @@
 <?php
 // PHP - Random Quote Generator
 
-// Create the Multidimensional array of quote elements and name it quotes
-// Each inner array element should be an associative array
+//////////////////////////////////////////////////////////////////
+
+//multidimensional array to house quotes
 $quotes = [
   [
     "quote"     =>  "Toto, I've got a feeling we're not in Kansas anymore.",
@@ -54,25 +55,30 @@ $quotes = [
   ]
 ];
 
+//////////////////////////////////////////////////////////////////
 
-
-// Create the getRandomQuuote function and name it getRandomQuote
+//function to generate random number and pull a quote out from that
 function getRandomQuote($array){
 
   //get length of the array
   $length = count($array) -1;
+
   //get random number using length of array
   $randomNumber = rand(0,$length);
+
   //return the quote array at the index of random number
   return $array[$randomNumber];
 }
 
-
-
+//////////////////////////////////////////////////////////////////
 
 // Create the printQuote funtion and name it printQuote
 function printQuote(){
+
+  //call the getRandomQuote function and get a random quote
   $theQuote = getRandomQuote($GLOBALS['quotes']);
+
+  //start the display string
   $displayString = '
   <p class="quote">' . $theQuote["quote"] . '</p>
   <p class="source">' . $theQuote["source"];
@@ -92,8 +98,38 @@ function printQuote(){
     $displayString .= '<span class="tags">' . $theQuote["tags"] . '</span>';
   }
 
+  //end display string
   $displayString .= '</p>';
 
+  //show display string
   echo $displayString;
 }
+
+//////////////////////////////////////////////////////////////////
+
+//gradient array for background
+$gradients = [
+  ['#003973', '#e5e5be'],
+  ['#348f50', '#56b4d3'],
+  ['#ff6e7f', '#bfe9ff'],
+  ['#314755', '#26a0da'],
+  ['#2b5876', '#4e4376'],
+  ['#00467f', '#a5cc82'],
+  ['#536976', '#bbd2c5'],
+  ['#9796f0', '#fbc7d4'],
+  ['#1f4037', '#99f2c8'],
+  ['#c31432', '#240b36'],
+  ['#654ea3', '#eaafc8'],
+  ['#ff4b1f', '#ff9068']
+];
+
+//function to change background color
+function changeBackground(){
+//get random Number
+$randcolorNum = rand(0,count($GLOBALS['gradients'])-1);
+$theColor = $GLOBALS['gradients'][$randcolorNum];
+$colorString = 'background-image: linear-gradient(120deg, '.$theColor[0].' , '.$theColor[1].' );';
+echo $colorString;
+}
+
 ?>
